@@ -859,3 +859,14 @@ body::after {
     bottom: 25vh !important;
   }
 }
+
+/* Restaurar posición original del WhatsApp flotante */
+#app > .floating-wa {
+  bottom: 20px !important;
+}
+
+@media(max-width:560px) {
+  #app > .floating-wa {
+    bottom: 14px !important;
+  }
+}
