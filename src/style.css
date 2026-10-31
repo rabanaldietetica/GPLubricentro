@@ -848,3 +848,14 @@ body::after {
     border-radius: 6px !important;
   }
 }
+
+/* Posición elevada del WhatsApp flotante */
+#app > .floating-wa {
+  bottom: 25vh !important;
+}
+
+@media(max-width:560px) {
+  #app > .floating-wa {
+    bottom: 25vh !important;
+  }
+}
