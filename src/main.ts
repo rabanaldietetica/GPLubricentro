@@ -281,7 +281,12 @@ app.innerHTML = `
 
   <section class="vehicles-section section-wrap">
     <div class="section-heading"><span class="eyebrow">ATENCIÓN MULTIMARCA</span><h2>TRABAJAMOS CON <span>DIFERENTES VEHÍCULOS</span></h2></div>
-    <div class="vehicle-grid"><div>🚗<strong>AUTOS</strong></div><div>🛻<strong>CAMIONETAS</strong></div><div>🚐<strong>UTILITARIOS</strong></div><div>⚙️<strong>DIÉSEL</strong></div></div>
+    <div class="vehicle-grid">
+<div class="vehicle-card"><img src="/images/autos.webp" alt="Autos"><strong>AUTOS</strong></div>
+<div class="vehicle-card"><img src="/images/camionetas.jpg" alt="Camionetas"><strong>CAMIONETAS</strong></div>
+<div class="vehicle-card"><img src="/images/utilitarios.jpg" alt="Utilitarios"><strong>UTILITARIOS</strong></div>
+<div class="vehicle-card"><img src="/images/diesel.jpeg" alt="Vehículos diésel"><strong>DIÉSEL</strong></div>
+</div>
   </section>
 
   <section class="why-section">

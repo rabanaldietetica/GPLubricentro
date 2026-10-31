@@ -870,3 +870,65 @@ body::after {
     bottom: 14px !important;
   }
 }
+
+
+/* GP VEHICLE PHOTO GALLERY */
+.vehicle-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 28px;
+}
+.vehicle-card {
+  position: relative;
+  overflow: hidden;
+  min-width: 0;
+  aspect-ratio: 4 / 3;
+  border-radius: 16px;
+  background: #171717;
+  border: 1px solid rgba(255,255,255,.13);
+  box-shadow: 0 8px 24px rgba(0,0,0,.3);
+}
+.vehicle-card img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform .4s ease;
+}
+.vehicle-card::after {
+  content: "";
+  position: absolute;
+  inset: 35% 0 0;
+  background: linear-gradient(transparent, rgba(0,0,0,.88));
+  pointer-events: none;
+}
+.vehicle-card strong {
+  position: absolute;
+  z-index: 1;
+  bottom: 14px;
+  left: 8px;
+  right: 8px;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 8px #000;
+}
+.vehicle-card:hover img {
+  transform: scale(1.07);
+}
+@media (max-width: 650px) {
+  .vehicle-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .vehicle-card {
+    border-radius: 13px;
+  }
+  .vehicle-card strong {
+    font-size: 12px;
+    bottom: 11px;
+  }
+}
