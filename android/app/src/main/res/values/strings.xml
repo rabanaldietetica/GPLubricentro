@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">GPLubricentro</string>
+    <string name="title_activity_main">GPLubricentro</string>
+    <string name="package_name">com.gpdigital.lubricentro</string>
+    <string name="custom_url_scheme">com.gpdigital.lubricentro</string>
+</resources>

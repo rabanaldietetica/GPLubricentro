@@ -1,0 +1,370 @@
+import './style.css'
+
+const images = [
+  'FB_1793405481196.jpg',
+  'FB_IMG_1793393638448.jpg','FB_IMG_1793393656730.jpg',
+  'FB_IMG_1793393668566.jpg','FB_IMG_1793393709551.jpg',
+  'FB_IMG_1793393719070.jpg','FB_IMG_1793393727065.jpg',
+  'FB_IMG_1793393732477.jpg','FB_IMG_1793393738475.jpg',
+  'FB_IMG_1793393749811.jpg','FB_IMG_1793393755914.jpg',
+  'FB_IMG_1793393762728.jpg','FB_IMG_1793393769471.jpg',
+  'FB_IMG_1793393776589.jpg','FB_IMG_1793393784745.jpg',
+  'FB_IMG_1793393789649.jpg','FB_IMG_1793393795263.jpg',
+  'FB_IMG_1793393806684.jpg','FB_IMG_1793396374657.jpg',
+  'FB_IMG_1793396377536.jpg','FB_IMG_1793396381054.jpg',
+  'FB_IMG_1793396384246.jpg','FB_IMG_1793396483116.jpg',
+  'FB_IMG_1793396498523.jpg','FB_IMG_1793396501045.jpg',
+  'FB_IMG_1793396504138.jpg','FB_IMG_1793396519641.jpg',
+  'FB_IMG_1793396522664.jpg','FB_IMG_1793396539314.jpg',
+  'FB_IMG_1793396543978.jpg','FB_IMG_1793396574341.jpg',
+  'FB_IMG_1793396580827.jpg','FB_IMG_1793396599917.jpg',
+  'FB_IMG_1793396608564.jpg','FB_IMG_1793396614298.jpg',
+  'FB_IMG_1793396629255.jpg','FB_IMG_1793396697880.jpg',
+  'FB_IMG_1793396704748.jpg','FB_IMG_1793396726395.jpg'
+]
+
+const interiors = Array.from({ length: 17 }, (_, i) =>
+  `interior-${String(i + 1).padStart(2, '0')}.jpg`
+)
+
+const videos = Array.from({ length: 10 }, (_, i) =>
+  `video-${String(i + 1).padStart(2, '0')}.mp4`
+)
+
+const services = [
+{
+n:'01', icon:'🛢️', title:'Cambio de aceite y filtros',
+intro:'El cambio de aceite y filtros es uno de los mantenimientos fundamentales para conservar el motor en buenas condiciones. El lubricante forma una película protectora entre las piezas móviles, reduce la fricción, ayuda a controlar la temperatura y transporta residuos hacia el sistema de filtración.',
+why:'Con el uso, las altas temperaturas, los ciclos de arranque, el tránsito intenso y los residuos de combustión degradan progresivamente el lubricante. Cuando pierde sus propiedades, disminuye su capacidad de protección y puede favorecer el desgaste prematuro.',
+details:['Drenaje del aceite usado siguiendo el procedimiento correspondiente.','Reemplazo del filtro de aceite.','Control del tapón de drenaje y su junta, cuando corresponda.','Selección del lubricante según las especificaciones del fabricante.','Carga de aceite nuevo y control de nivel.','Verificación de posibles pérdidas y revisión visual del sector.'],
+benefits:['Protección de pistones, cilindros, cojinetes y componentes internos.','Reducción de la fricción y el desgaste.','Ayuda al control de temperatura.','Contribuye a mantener limpio el circuito de lubricación.','Favorece la durabilidad y el funcionamiento del motor.'],
+extra:'La frecuencia del cambio depende del motor, el lubricante, las indicaciones del fabricante y las condiciones de uso. Los recorridos cortos, el tránsito urbano y el trabajo exigente pueden requerir controles más frecuentes. No existe un intervalo único para todos los vehículos.'
+},
+{
+n:'02', icon:'🔧', title:'Cambio de filtro de aceite',
+intro:'El filtro de aceite retiene partículas, residuos y contaminantes que circulan por el lubricante durante el funcionamiento del motor. Es una pieza esencial del circuito de lubricación y trabaja continuamente para evitar que las impurezas lleguen a las superficies internas.',
+why:'A medida que acumula contaminantes, el elemento filtrante puede saturarse y perder eficiencia. Según su diseño y condición, puede abrirse la válvula de derivación o bypass, permitiendo la circulación de aceite con menor filtración.',
+details:['Identificación del filtro correspondiente al motor.','Retiro del filtro usado.','Control de la superficie de apoyo y del sello.','Instalación del filtro nuevo siguiendo el procedimiento indicado.','Verificación de pérdidas después del arranque.'],
+benefits:['Ayuda a retener partículas contaminantes.','Contribuye a mantener limpio el circuito.','Favorece la protección de los componentes internos.','Complementa el trabajo del aceite nuevo.'],
+extra:'Se recomienda reemplazarlo en cada cambio de aceite, respetando siempre las indicaciones del fabricante y utilizando un filtro compatible.'
+},
+{
+n:'03', icon:'🌬️', title:'Cambio de filtro de aire',
+intro:'El filtro de aire protege el motor de polvo, tierra y partículas presentes en el ambiente. Permite que ingrese aire filtrado al sistema de admisión, necesario para que la combustión se realice correctamente.',
+why:'Cuando el elemento filtrante se encuentra saturado, puede restringir el paso de aire y alterar el funcionamiento del sistema de admisión. La suciedad también puede representar un riesgo para los componentes internos si supera la capacidad de filtración.',
+details:['Inspección del alojamiento y del elemento filtrante.','Control de suciedad, deformaciones y deterioro.','Reemplazo por un filtro compatible cuando corresponda.','Verificación del correcto cierre de la caja del filtro.'],
+benefits:['Ayuda a proteger el motor contra partículas abrasivas.','Favorece una entrada de aire adecuada.','Contribuye al funcionamiento correcto de la admisión.','Ayuda a conservar el rendimiento del motor.'],
+extra:'La frecuencia de reemplazo depende del vehículo y del ambiente donde circula. Los caminos de tierra y las condiciones polvorientas pueden acelerar la saturación.'
+},
+{
+n:'04', icon:'⛽', title:'Cambio de filtro de combustible',
+intro:'El filtro de combustible retiene partículas, suciedad y contaminantes antes de que lleguen al sistema de alimentación y a los componentes de inyección. Su función es especialmente importante en motores diésel, cuyos sistemas trabajan con tolerancias muy precisas.',
+why:'La acumulación de contaminantes puede restringir el caudal y afectar el suministro de combustible. En sistemas diésel, la presencia de agua o partículas puede perjudicar componentes de alta precisión.',
+details:['Identificación del filtro y sistema de alimentación.','Inspección de conexiones y posibles pérdidas.','Reemplazo del elemento filtrante según el diseño del sistema.','Purga o cebado cuando el procedimiento lo requiera.','Control del funcionamiento y estanqueidad.'],
+benefits:['Ayuda a proteger bomba e inyectores.','Contribuye a mantener un suministro adecuado.','Reduce el ingreso de partículas al sistema.','Ayuda a prevenir fallas relacionadas con la contaminación.'],
+extra:'Un filtro obstruido puede asociarse con dificultad de arranque, pérdida de potencia o funcionamiento irregular. El diagnóstico debe confirmar la causa antes de atribuir el problema al filtro.'
+},
+{
+n:'05', icon:'🍃', title:'Cambio de filtro de habitáculo / polen',
+intro:'El filtro de habitáculo, también llamado filtro antipolen, filtra el aire que ingresa al interior del vehículo mediante la ventilación y el sistema de climatización. Puede retener polvo, polen y otras partículas ambientales.',
+why:'Con el tiempo acumula suciedad y puede reducir el caudal de aire. La humedad y los residuos retenidos también pueden favorecer la aparición de olores desagradables.',
+details:['Ubicación e inspección del filtro.','Control de suciedad, humedad y deterioro.','Reemplazo por el elemento compatible.','Revisión del alojamiento y sentido de circulación del aire.'],
+benefits:['Mejora la filtración del aire interior.','Ayuda a reducir el ingreso de partículas.','Favorece la circulación del aire.','Contribuye al confort de los ocupantes.'],
+extra:'El intervalo depende del vehículo, el uso de la climatización y las condiciones ambientales.'
+},
+{
+n:'06', icon:'🛢️', title:'Aceites y lubricantes',
+intro:'Elegir el lubricante adecuado es fundamental para proteger el motor y los diferentes conjuntos mecánicos. Cada vehículo requiere una formulación y especificación determinada. No alcanza con elegir solamente por marca o viscosidad.',
+why:'El lubricante reduce la fricción, ayuda a disipar calor, protege contra el desgaste y contribuye a controlar la formación de depósitos. Un producto incompatible puede comprometer la protección o el funcionamiento de determinados sistemas.',
+details:['Identificación del vehículo, motor y año.','Consulta de viscosidad SAE recomendada.','Verificación de normas API y ACEA cuando correspondan.','Control de homologaciones exigidas por el fabricante.','Selección de producto compatible con el uso y los sistemas de tratamiento de gases.'],
+benefits:['Lubricación adecuada de las piezas.','Protección contra fricción y desgaste.','Ayuda al control térmico.','Contribución a la limpieza interna del motor.'],
+extra:'Trabajamos con marcas como YPF, Shell, Total, Elf, Valvoline, Motul, Liqui Moly, Castrol, Selenia y Mannol. La disponibilidad de viscosidades y especificaciones debe consultarse. La elección se realiza según la ficha técnica exigida por cada vehículo.'
+},
+{
+n:'07', icon:'⚙️', title:'Service de cajas automáticas',
+intro:'La transmisión automática combina componentes mecánicos, hidráulicos y electrónicos. El fluido específico de la caja lubrica piezas internas, ayuda a controlar la temperatura y, según el diseño, transmite presión hidráulica para accionar los cambios.',
+why:'El fluido puede degradarse por temperatura, esfuerzo y contaminación. Un mantenimiento incorrecto o el uso de un fluido que no cumple la especificación puede afectar seriamente la transmisión.',
+details:['Identificación del tipo y modelo de transmisión.','Verificación de pérdidas y estado general.','Control de nivel y temperatura según procedimiento.','Evaluación del fluido y del filtro cuando corresponda.','Selección del fluido con especificación exacta.','Mantenimiento de acuerdo con el diseño de la caja.'],
+benefits:['Ayuda a conservar la lubricación adecuada.','Contribuye al funcionamiento de los cambios.','Ayuda a controlar temperatura y desgaste.','Permite detectar pérdidas y anomalías.'],
+extra:'Cambios bruscos, demoras al seleccionar marchas, vibraciones, ruidos o pérdidas justifican una revisión. No todas las cajas admiten el mismo procedimiento ni el mismo fluido. Un service no garantiza reparar una transmisión que ya presenta una avería.'
+},
+{
+n:'08', icon:'🔩', title:'Mecánica general',
+intro:'La mecánica general comprende la revisión, diagnóstico y reparación de distintos sistemas del vehículo. El mantenimiento periódico permite identificar desgastes, ruidos, vibraciones y anomalías antes de que se conviertan en problemas mayores.',
+why:'Un vehículo puede continuar circulando aunque alguno de sus componentes esté deteriorado. Ignorar las señales puede provocar daños adicionales, reparaciones más costosas o situaciones que comprometan la seguridad.',
+details:['Recepción y descripción de los síntomas.','Inspección de los componentes relacionados.','Evaluación y diagnóstico de la falla.','Explicación del trabajo recomendado.','Reparación según el alcance acordado.','Control del funcionamiento después de la intervención.'],
+benefits:['Detección temprana de anomalías.','Mejor confiabilidad del vehículo.','Prevención de daños asociados.','Mantenimiento de los sistemas mecánicos.'],
+extra:'Cada reparación requiere un diagnóstico particular. Los trabajos y repuestos necesarios se determinan según el vehículo y la falla encontrada.'
+},
+{
+n:'09', icon:'⚙️', title:'Embragues',
+intro:'El embrague conecta y desconecta el motor de la caja de cambios en los vehículos con transmisión manual. Permite iniciar la marcha y seleccionar velocidades de manera controlada. Sus componentes trabajan mediante fricción y soportan esfuerzos repetidos.',
+why:'El disco, la placa de presión y el sistema de accionamiento sufren desgaste con el uso. El tránsito intenso, las pendientes y los hábitos de conducción pueden acelerar ese desgaste.',
+details:['Evaluación de los síntomas y del accionamiento.','Control de dureza, recorrido y respuesta del pedal.','Revisión de ruidos, vibraciones y patinamiento.','Inspección de componentes cuando se desmonta el conjunto.','Evaluación de disco, placa, rulemán y elementos relacionados.'],
+benefits:['Mejor transmisión de fuerza entre motor y caja.','Cambios de marcha más controlados.','Detección de desgaste antes de una falla completa.','Recuperación del funcionamiento cuando la reparación corresponde.'],
+extra:'Patinamiento, dificultad para seleccionar marchas, vibraciones, ruidos u olor a material recalentado son señales que justifican una revisión.'
+},
+{
+n:'10', icon:'⏱️', title:'Cambio de correas de distribución',
+intro:'La distribución sincroniza el movimiento del cigüeñal y el árbol de levas para que las válvulas trabajen en el momento correcto. En los motores que utilizan correa, este componente debe reemplazarse según los intervalos de tiempo o kilometraje establecidos.',
+why:'La correa envejece y puede presentar grietas, endurecimiento, contaminación o pérdida de resistencia. Si se rompe o pierde sincronización, determinados motores pueden sufrir daños internos severos.',
+details:['Identificación del sistema de distribución.','Verificación del intervalo de mantenimiento.','Inspección de correa y componentes relacionados.','Evaluación de tensores y rodillos.','Control de bomba de agua cuando forma parte del sistema o el fabricante lo recomienda.','Montaje y sincronización según procedimiento técnico.'],
+benefits:['Conserva la sincronización del motor.','Reduce el riesgo de rotura inesperada.','Ayuda a prevenir daños internos costosos.','Permite renovar componentes de desgaste relacionados.'],
+extra:'No todos los motores tienen la misma configuración ni el mismo intervalo. La inspección visual por sí sola no reemplaza el plan de mantenimiento del fabricante.'
+},
+{
+n:'11', icon:'🚘', title:'Tren delantero',
+intro:'El tren delantero reúne componentes de dirección y suspensión que permiten controlar la trayectoria del vehículo, absorber irregularidades y mantener el contacto de los neumáticos con el camino.',
+why:'Rótulas, bujes, extremos, parrillas, bieletas, amortiguadores y otros elementos sufren desgaste por uso, golpes y condiciones del camino. Su deterioro puede afectar estabilidad, dirección y neumáticos.',
+details:['Inspección de componentes de dirección y suspensión.','Control de rótulas, extremos y bujes.','Revisión de parrillas, bieletas y amortiguadores.','Detección de holguras, pérdidas y ruidos.','Evaluación de alineación cuando corresponda.'],
+benefits:['Mejor control de la dirección.','Contribución a la estabilidad.','Detección de holguras y desgastes.','Ayuda a evitar desgaste irregular de neumáticos.'],
+extra:'Golpes al pasar por baches, vibraciones, dirección imprecisa, ruidos al girar o desgaste irregular de cubiertas son motivos para realizar una revisión.'
+},
+{
+n:'12', icon:'🛑', title:'Frenos',
+intro:'El sistema de frenos es esencial para la seguridad. Permite reducir la velocidad y detener el vehículo mediante componentes hidráulicos y mecánicos que trabajan conjuntamente.',
+why:'Las pastillas, discos, campanas, cintas y otros elementos se desgastan con el uso y las temperaturas de frenado. Una falla puede aumentar la distancia de detención o provocar pérdida de control.',
+details:['Inspección de pastillas y discos.','Control de campanas y cintas cuando corresponda.','Revisión de cálipers y componentes hidráulicos.','Control del nivel y estado del líquido.','Inspección de mangueras y posibles pérdidas.','Evaluación del funcionamiento del sistema.'],
+benefits:['Detección de desgaste y fallas.','Conservación de la capacidad de frenado.','Prevención de daños en componentes relacionados.','Mayor seguridad en la conducción.'],
+extra:'Ruidos, vibraciones, pedal blando o duro, desviaciones al frenar, testigos encendidos o pérdidas de líquido requieren revisión. Ante una falla de frenos, no se debe continuar circulando.'
+},
+{
+n:'13', icon:'📋', title:'Mantenimiento preventivo',
+intro:'El mantenimiento preventivo consiste en controlar periódicamente los sistemas del vehículo y realizar los reemplazos indicados antes de que el desgaste provoque una avería.',
+why:'Esperar a que una pieza falle puede generar consecuencias sobre otros componentes. Los controles programados permiten anticiparse y organizar las intervenciones necesarias.',
+details:['Consulta del historial y kilometraje.','Revisión de niveles y posibles pérdidas.','Control de lubricantes y filtros.','Inspección visual de componentes mecánicos.','Verificación de elementos de seguridad.','Orientación sobre próximos mantenimientos.'],
+benefits:['Ayuda a prevenir averías inesperadas.','Permite detectar pérdidas y desgastes.','Contribuye a prolongar la vida útil de componentes.','Favorece la seguridad y confiabilidad.','Facilita organizar gastos de mantenimiento.'],
+extra:'El plan debe adaptarse al manual del vehículo, kilometraje, antigüedad y condiciones de utilización.'
+},
+{
+n:'14', icon:'🚙', title:'Vehículos que atendemos',
+intro:'En GP Lubricentro atendemos diferentes tipos de vehículos, teniendo en cuenta las particularidades de cada motor y sistema mecánico.',
+why:'Un auto particular, una camioneta de trabajo y un utilitario pueden tener necesidades distintas de lubricación, filtración y mantenimiento. La identificación correcta del vehículo permite seleccionar productos y procedimientos compatibles.',
+details:['Autos particulares.','Camionetas.','Vehículos utilitarios.','Vehículos con motorización diésel.','Motores nafteros y diésel, según el servicio requerido.'],
+benefits:['Orientación según las características del vehículo.','Selección de lubricantes y filtros compatibles.','Mantenimiento adaptado al uso.','Atención de distintas necesidades de servicio.'],
+extra:'La compatibilidad de cada trabajo, repuesto y producto se confirma según marca, modelo, año y motorización.'
+},
+{
+n:'15', icon:'⭐', title:'Por qué elegir GP Lubricentro',
+intro:'En GP Lubricentro entendemos que cada vehículo necesita mantenimiento adecuado para conservar su funcionamiento y confiabilidad. Por eso reunimos servicios de lubricación, mantenimiento preventivo y mecánica en un mismo establecimiento.',
+why:'Un mantenimiento bien planificado ayuda a cuidar el motor, la transmisión y los sistemas de seguridad. La elección de productos compatibles y la atención de los síntomas a tiempo son fundamentales.',
+details:['Servicios de lubricación y mantenimiento.','Diferentes marcas de aceites y filtros.','Atención de autos, camionetas y utilitarios.','Servicios para vehículos diésel.','Trabajos de mecánica y mantenimiento.','Atención en Av. Almafuerte 799, CABA.'],
+benefits:['Un espacio para distintas necesidades del vehículo.','Orientación sobre productos y mantenimiento.','Atención de servicios preventivos y mecánicos.','Contacto directo para consultas y turnos.'],
+extra:'Nuestro objetivo es cuidar tu vehículo hoy para ayudarte a evitar problemas mañana. Consultanos por el servicio que necesita tu vehículo.'
+}
+]
+
+const extraLubrication = [
+  {title:'Aceite de caja manual',text:'La transmisión manual utiliza lubricantes específicos para proteger engranajes, rodamientos y sincronizadores. El producto debe cumplir la viscosidad y clasificación indicada por el fabricante. Un nivel incorrecto o un aceite inadecuado puede afectar la lubricación y el funcionamiento de los cambios.'},
+  {title:'Aceite de diferencial',text:'El diferencial transmite la fuerza hacia las ruedas y utiliza lubricantes preparados para soportar cargas elevadas entre engranajes. El reemplazo según el plan del fabricante ayuda a conservar la película lubricante y reducir el desgaste de engranajes y rodamientos.'},
+  {title:'Refrigerante',text:'El líquido refrigerante circula por el sistema para ayudar a mantener la temperatura de funcionamiento y proteger los componentes contra corrosión y depósitos. Debe utilizarse el tipo y concentración compatibles con el vehículo. No se recomienda mezclar tecnologías diferentes ni abrir el circuito en caliente.'}
+]
+
+const oilBrands = [
+  ['YPF','ypf','jpeg'],
+  ['Shell','shell','png'],
+  ['Total','total','webp'],
+  ['Elf','elf','webp'],
+  ['Valvoline','valvoline','webp'],
+  ['Motul','motul','webp'],
+  ['Liqui Moly','liquimoly','jpg'],
+  ['Castrol','castrol','webp'],
+  ['Selenia','selenia','webp'],
+  ['Mannol','mannol','jpg']
+]
+const filterBrands = [
+  ['FRAM','fram','jpg'],
+  ['MARENO','mareno','jpeg'],
+  ['TECNECO','tecneco','jpeg']
+]
+const wa = 'https://wa.me/5491159763359'
+const img = (name:string) => `/images/${name}`
+
+function serviceCard(s:any) {
+  return `<article class="service-card" data-service="${s.n}">
+    <div class="service-number">${s.n}</div>
+    <div class="service-icon">${s.icon}</div>
+    <h3>${s.title}</h3>
+    <p>${s.intro.slice(0,145)}...</p>
+    <button class="text-button" data-open-service="${s.n}">VER SERVICIO COMPLETO <span>↗</span></button>
+  </article>`
+}
+
+function serviceDetail(s:any) {
+  return `<div class="detail-hero"><span class="eyebrow">GP LUBRICENTRO · SERVICIO ${s.n}</span><div class="detail-icon">${s.icon}</div><h2>${s.title}</h2></div>
+  <h3>¿En qué consiste?</h3><p>${s.intro}</p>
+  <h3>¿Por qué es importante?</h3><p>${s.why}</p>
+  <h3>¿Qué incluye o qué revisamos?</h3><ul>${s.details.map((x:string)=>`<li>${x}</li>`).join('')}</ul>
+  <h3>Beneficios del mantenimiento</h3><ul>${s.benefits.map((x:string)=>`<li>${x}</li>`).join('')}</ul>
+  <div class="detail-note">${s.extra}</div>
+  <a class="gold-button full-button" href="${wa}?text=${encodeURIComponent('Hola GP Lubricentro, quisiera consultar por: '+s.title)}">CONSULTAR POR WHATSAPP ↗</a>`
+}
+
+const app = document.querySelector<HTMLDivElement>('#app')!
+
+app.innerHTML = `
+<header class="topbar">
+  <a href="#inicio" class="mini-brand">GP <span>LUBRICENTRO</span></a>
+  <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
+  <nav id="mainNav">
+    <a href="#servicios">SERVICIOS</a><a href="#marcas">MARCAS</a>
+    <a href="#galerias">GALERÍAS</a><a href="#contacto">CONTACTO</a>
+  </nav>
+</header>
+
+<main id="inicio">
+  <section class="logo-section">
+    <img class="main-logo" src="${img('logo.jpg')}" alt="Logo GP Lubricentro" fetchpriority="high" decoding="async"/>
+  </section>
+
+  <section class="hero-contact-strip">
+    <a href="https://www.google.com/maps/search/?api=1&query=Av.+Almafuerte+799+CABA">
+      <span>📍</span><div><small>VISITANOS</small><strong>Av. Almafuerte 799, CABA</strong></div>
+    </a>
+    <a href="tel:+541159763359">
+      <span>☎</span><div><small>LLAMANOS</small><strong>11 5976-3359</strong></div>
+    </a>
+    <a class="hero-contact-wa" href="${wa}">
+      <span>✆</span><div><small>CONTACTO DIRECTO</small><strong>WhatsApp 11 5976-3359</strong></div>
+    </a>
+  </section>
+
+  <section class="hero-title">
+    <span class="eyebrow">MANTENIMIENTO · LUBRICACIÓN · MECÁNICA INTEGRAL</span>
+    <h1>CUIDAMOS TU MOTOR.<br/><span>PROTEGEMOS TU CAMINO.</span></h1>
+    <p>Servicio, mantenimiento y mecánica para autos, camionetas, utilitarios y vehículos diésel.</p>
+    <a class="gold-button" href="#servicios">DESCUBRÍ NUESTROS SERVICIOS ↓</a>
+  </section>
+
+  <section class="cover-section">
+    <img src="${img('portada-negocio.jpg')}" alt="GP Lubricentro - nuestro establecimiento"/>
+    <div class="cover-caption"><span>GP LUBRICENTRO</span><strong>Tu vehículo, en buenas manos.</strong></div>
+  </section>
+
+  <section class="intro section-wrap">
+    <span class="eyebrow">BIENVENIDOS A GP LUBRICENTRO</span>
+    <h2>ATENCIÓN Y MANTENIMIENTO <span>PARA CADA MOTOR.</span></h2>
+    <p>Trabajamos para mantener cada vehículo en condiciones adecuadas mediante servicios de lubricación, mantenimiento preventivo y mecánica. Seleccionamos productos de acuerdo con las especificaciones de cada vehículo y atendemos las necesidades de cada sistema.</p>
+  </section>
+
+  <section class="gallery-section section-wrap" id="galerias">
+    <div class="section-heading"><span class="eyebrow">NUESTRO ESPACIO</span><h2>CONOCÉ NUESTRO NEGOCIO <span>POR DENTRO</span></h2><p>Un recorrido por nuestras instalaciones.</p></div>
+    <div class="photo-grid interior-grid">${interiors.map((f,i)=>`<button class="photo-item" data-image="${img(f)}" aria-label="Ampliar fotografía ${i+1}"><img loading="lazy" decoding="async" src="${img(f)}" alt="Interior de GP Lubricentro ${i+1}"/><span>＋</span></button>`).join('')}</div>
+  </section>
+
+  <section class="gallery-section section-wrap dark-section">
+    <div class="section-heading"><span class="eyebrow">NUESTRO TRABAJO</span><h2>TRABAJOS <span>QUE REALIZAMOS</span></h2><p>Conocé algunos de los trabajos realizados en GP Lubricentro.</p></div>
+    <div class="photo-grid work-grid">${images.map((f,i)=>`<button class="photo-item" data-image="${img(f)}" aria-label="Ampliar trabajo ${i+1}"><img loading="lazy" decoding="async" src="${img(f)}" alt="Trabajo realizado en GP Lubricentro ${i+1}"/><span>＋</span></button>`).join('')}</div>
+  </section>
+
+  <section class="services-section section-wrap" id="servicios">
+    <div class="section-heading"><span class="eyebrow">SOLUCIONES PARA TU VEHÍCULO</span><h2>NUESTROS <span>SERVICIOS</span></h2><p>Conocé cada trabajo, su importancia y los beneficios de realizar el mantenimiento adecuado.</p></div>
+    <div class="service-grid">${services.map(serviceCard).join('')}</div>
+  </section>
+
+  <section class="lubricants-section section-wrap" id="marcas">
+    <div class="section-heading"><span class="eyebrow">PRODUCTOS Y CALIDAD</span><h2>ACEITES Y <span>LUBRICANTES</span></h2><p>Distintas marcas y formulaciones. La elección depende de la viscosidad, las normas y las homologaciones que requiere cada motor.</p></div>
+    <div class="brand-grid">${oilBrands.map(([name,slug,ext])=>`<div class="brand-tile"><img class="brand-image" loading="lazy" decoding="async" src="/images/marcas/${slug}.${ext}" alt="Marca ${name}" onerror="this.style.display='none'"/><strong>${name}</strong></div>`).join('')}</div>
+    <div class="extra-lubrication"><h3>OTROS SERVICIOS DE LUBRICACIÓN</h3><div class="extra-grid">${extraLubrication.map(x=>`<article><h4>${x.title}</h4><p>${x.text}</p></article>`).join('')}</div></div>
+  </section>
+
+  <section class="filters-section section-wrap">
+    <div class="section-heading"><span class="eyebrow">FILTRACIÓN Y PROTECCIÓN</span><h2>MARCAS DE <span>FILTROS</span></h2><p>El filtro correcto ayuda a proteger los distintos sistemas del vehículo. La aplicación se verifica según modelo y motorización.</p></div>
+    <div class="brand-grid filter-grid">${filterBrands.map(([name,slug,ext])=>`<div class="brand-tile"><img class="brand-image" loading="lazy" decoding="async" src="/images/marcas/${slug}.${ext}" alt="Marca de filtros ${name}" onerror="this.style.display='none'"/><strong>${name}</strong></div>`).join('')}</div>
+    <p class="filter-note">Filtros de aceite, aire, combustible y habitáculo: consultá por disponibilidad y aplicación para tu vehículo.</p>
+  </section>
+
+  <section class="video-section section-wrap dark-section">
+    <div class="section-heading"><span class="eyebrow">ASÍ TRABAJAMOS</span><h2>CONOCÉ CÓMO <span>TRABAJAMOS</span></h2><p>Videos de nuestro trabajo y de las instalaciones.</p></div>
+    <div class="video-grid">${videos.map((f,i)=>`<article class="video-card"><video controls playsinline preload="none" poster="${img('portada-negocio.jpg')}" aria-label="Video de GP Lubricentro ${i+1}"><source src="/videos/${f}" type="video/mp4"/>Tu navegador no puede reproducir este video.</video><span>GP LUBRICENTRO · VIDEO ${String(i+1).padStart(2,'0')}</span></article>`).join('')}</div>
+  </section>
+
+  <section class="vehicles-section section-wrap">
+    <div class="section-heading"><span class="eyebrow">ATENCIÓN MULTIMARCA</span><h2>TRABAJAMOS CON <span>DIFERENTES VEHÍCULOS</span></h2></div>
+    <div class="vehicle-grid"><div>🚗<strong>AUTOS</strong></div><div>🛻<strong>CAMIONETAS</strong></div><div>🚐<strong>UTILITARIOS</strong></div><div>⚙️<strong>DIÉSEL</strong></div></div>
+  </section>
+
+  <section class="why-section">
+    <div class="section-wrap"><span class="eyebrow">TU CONFIANZA ES IMPORTANTE</span><h2>¿POR QUÉ ELEGIR <span>GP LUBRICENTRO?</span></h2><p>Reunimos servicios de lubricación, mantenimiento preventivo y mecánica para atender las necesidades de tu vehículo. Trabajamos con diferentes marcas de aceites y filtros, teniendo en cuenta las especificaciones técnicas correspondientes.</p><p class="big-phrase">CUIDAMOS TU VEHÍCULO HOY PARA AYUDARTE A EVITAR PROBLEMAS MAÑANA.</p><a class="gold-button" href="${wa}">HABLÁ CON NOSOTROS POR WHATSAPP ↗</a></div>
+  </section>
+
+  <section class="contact-section section-wrap" id="contacto">
+    <div class="section-heading"><span class="eyebrow">ESTAMOS PARA AYUDARTE</span><h2>CONTACTÁ CON <span>GP LUBRICENTRO</span></h2><p>Consultá por un servicio, productos o mantenimiento para tu vehículo.</p></div>
+    
+    <div class="hours-card">
+      <div class="hours-icon">◷</div>
+      <div class="hours-content">
+        <h3>HORARIOS DE ATENCIÓN</h3>
+        <div class="hours-row"><span>Lunes a viernes</span><strong>09:00 a 18:00 hs</strong></div>
+        <div class="hours-row"><span>Sábados</span><strong>09:00 a 14:30 hs</strong></div>
+        <div class="hours-row closed"><span>Domingos</span><strong>CERRADO</strong></div>
+      </div>
+    </div>
+<div class="contact-grid">
+      <a class="contact-card" href="${wa}"><span>✆</span><strong>WHATSAPP</strong><small>11 5976-3359</small><em>Enviar consulta ↗</em></a>
+      <a class="contact-card" href="https://www.instagram.com/lubricentrogp" target="_blank" rel="noopener"><span>◎</span><strong>INSTAGRAM</strong><small>@lubricentrogp</small><em>Visitar perfil ↗</em></a>
+      <a class="contact-card" href="https://www.facebook.com/LubricentroGP" target="_blank" rel="noopener"><span>f</span><strong>FACEBOOK</strong><small>Lubricentro GP</small><em>Visitar página ↗</em></a>
+      <a class="contact-card" href="https://www.google.com/maps/search/?api=1&query=Av.+Almafuerte+799+CABA" target="_blank" rel="noopener"><span>⌖</span><strong>UBICACIÓN</strong><small>Av. Almafuerte 799, CABA</small><em>Cómo llegar ↗</em></a>
+    </div>
+    <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Av.+Almafuerte+799+CABA" target="_blank" rel="noopener">📍 VER UBICACIÓN EN GOOGLE MAPS</a>
+  </section>
+</main>
+
+<footer><img src="${img('logo.jpg')}" alt="GP Lubricentro"/><p>GP LUBRICENTRO · MANTENIMIENTO · LUBRICACIÓN · MECÁNICA INTEGRAL</p><small>Av. Almafuerte 799 · CABA · WhatsApp 11 5976-3359</small><small>© ${new Date().getFullYear()} GP Lubricentro. Todos los derechos reservados.</small>
+    <a class="back-top" href="#inicio">VOLVER ARRIBA <span>↑</span></a>
+</footer>
+
+<a class="floating-wa" href="${wa}" aria-label="Contactar por WhatsApp">
+  <svg viewBox="0 0 32 32" width="34" height="34" aria-hidden="true">
+    <path d="M16 3.2a12.1 12.1 0 0 0-10.4 18.3L4 28l6.7-1.7A12.1 12.1 0 1 0 16 3.2Z" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round"/>
+    <path d="M11.1 9.8c-.5 0-1.2.7-1.3 1.5-.2 1.5.8 3.5 2.7 5.5 2.1 2.2 4.5 3.5 6.2 3.5 1 0 2.1-.9 2.3-1.7.2-.6-.1-.9-.6-1.1l-2.2-1c-.4-.2-.7-.1-1 .3l-.8 1c-1.5-.6-2.7-1.7-3.5-3.1l.8-.9c.3-.3.3-.7.1-1l-1-2.3c-.2-.4-.7-.7-1.7-.7Z" fill="currentColor"/>
+  </svg>
+</a>
+
+<div class="modal" id="modal" aria-hidden="true"><div class="modal-backdrop" data-close></div><div class="modal-panel"><button class="modal-close" data-close aria-label="Cerrar">✕</button><div id="modalContent"></div></div></div>
+`
+
+const modal = document.querySelector<HTMLElement>('#modal')!
+const modalContent = document.querySelector<HTMLElement>('#modalContent')!
+
+function openModal(content:string) {
+  modalContent.innerHTML = content
+  modal.classList.add('active')
+  modal.setAttribute('aria-hidden','false')
+  document.body.classList.add('modal-open')
+}
+function closeModal() {
+  modal.classList.remove('active')
+  modal.setAttribute('aria-hidden','true')
+  modalContent.innerHTML = ''
+  document.body.classList.remove('modal-open')
+}
+
+document.addEventListener('click', (e) => {
+  const target = e.target as HTMLElement
+  const serviceButton = target.closest<HTMLElement>('[data-open-service]')
+  const imageButton = target.closest<HTMLElement>('[data-image]')
+  if (serviceButton) {
+    const s = services.find(x => x.n === serviceButton.dataset.openService)
+    if (s) openModal(serviceDetail(s))
+  }
+  if (imageButton) {
+    const src = imageButton.dataset.image
+    if (src) openModal(`<img class="lightbox-image" src="${src}" alt="Fotografía ampliada de GP Lubricentro"/>`)
+  }
+  if (target.closest('[data-close]')) closeModal()
+  if (target.closest('#menuToggle')) document.querySelector('#mainNav')?.classList.toggle('nav-open')
+  if (target.closest('#mainNav a')) document.querySelector('#mainNav')?.classList.remove('nav-open')
+})
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal()
+})
+
+document.querySelectorAll<HTMLVideoElement>('video').forEach(video => {
+  video.addEventListener('play', () => {
+    document.querySelectorAll<HTMLVideoElement>('video').forEach(other => {
+      if (other !== video) other.pause()
+    })
+  })
+})
