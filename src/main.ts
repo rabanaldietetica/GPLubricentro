@@ -14,7 +14,7 @@ const images = [
   'FB_IMG_1793396377536.jpg','FB_IMG_1793396381054.jpg',
   'FB_IMG_1793396384246.jpg','FB_IMG_1793396483116.jpg',
   'FB_IMG_1793396498523.jpg','FB_IMG_1793396501045.jpg',
-  'FB_IMG_1793396504138.jpg','FB_IMG_1793396519641.jpg',
+  'FB_IMG_1793396504138.jpg',
   'FB_IMG_1793396522664.jpg','FB_IMG_1793396539314.jpg',
   'FB_IMG_1793396543978.jpg','FB_IMG_1793396574341.jpg',
   'FB_IMG_1793396580827.jpg','FB_IMG_1793396599917.jpg',
@@ -23,9 +23,9 @@ const images = [
   'FB_IMG_1793396704748.jpg','FB_IMG_1793396726395.jpg'
 ]
 
-const interiors = Array.from({ length: 17 }, (_, i) =>
-  `interior-${String(i + 1).padStart(2, '0')}.jpg`
-)
+const interiors = Array.from({ length: 17 }, (_, i) => i + 1)
+  .filter(n => n !== 2)
+  .map(n => `interior-${String(n).padStart(2, '0')}.jpg`)
 
 const videos = Array.from({ length: 10 }, (_, i) =>
   `video-${String(i + 1).padStart(2, '0')}.mp4`
@@ -82,11 +82,11 @@ extra:'Trabajamos con marcas como YPF, Shell, Total, Elf, Valvoline, Motul, Liqu
 },
 {
 n:'07', icon:'⚙️', title:'Service de cajas automáticas',
-intro:'La transmisión automática combina componentes mecánicos, hidráulicos y electrónicos. El fluido específico de la caja lubrica piezas internas, ayuda a controlar la temperatura y, según el diseño, transmite presión hidráulica para accionar los cambios.',
-why:'El fluido puede degradarse por temperatura, esfuerzo y contaminación. Un mantenimiento incorrecto o el uso de un fluido que no cumple la especificación puede afectar seriamente la transmisión.',
-details:['Identificación del tipo y modelo de transmisión.','Verificación de pérdidas y estado general.','Control de nivel y temperatura según procedimiento.','Evaluación del fluido y del filtro cuando corresponda.','Selección del fluido con especificación exacta.','Mantenimiento de acuerdo con el diseño de la caja.'],
-benefits:['Ayuda a conservar la lubricación adecuada.','Contribuye al funcionamiento de los cambios.','Ayuda a controlar temperatura y desgaste.','Permite detectar pérdidas y anomalías.'],
-extra:'Cambios bruscos, demoras al seleccionar marchas, vibraciones, ruidos o pérdidas justifican una revisión. No todas las cajas admiten el mismo procedimiento ni el mismo fluido. Un service no garantiza reparar una transmisión que ya presenta una avería.'
+intro:'El service de cajas automáticas es uno de los trabajos destacados de GP Lubricentro. La transmisión automática necesita un fluido específico para lubricar sus componentes, ayudar a controlar la temperatura y, según el diseño, generar la presión hidráulica necesaria para el funcionamiento de los cambios. El mantenimiento debe realizarse respetando las especificaciones y el procedimiento correspondiente a cada transmisión.',
+why:'Con el uso, los ciclos de temperatura y las condiciones de conducción, el fluido puede degradarse y acumular partículas de desgaste. Un nivel incorrecto, un fluido incompatible o un procedimiento inadecuado pueden afectar la lubricación, la presión hidráulica y el funcionamiento de la caja. Por eso es importante identificar correctamente la transmisión antes de realizar cualquier intervención.',
+details:['Identificación del vehículo y del tipo y modelo de transmisión.','Consulta de las especificaciones y del procedimiento indicado para esa caja.','Inspección general y verificación de posibles pérdidas.','Control del nivel y de la temperatura siguiendo el método correspondiente.','Evaluación del estado del fluido y del filtro cuando el diseño lo permita.','Selección del fluido que cumpla la especificación exacta del fabricante.','Realización del mantenimiento que corresponda al diseño de la transmisión.','Control final para verificar niveles, cierres y posibles pérdidas.'],
+benefits:['Contribuye a mantener la lubricación adecuada de los componentes internos.','Ayuda a conservar las condiciones de funcionamiento de la transmisión.','Favorece el control de temperatura y la protección frente al desgaste.','Permite revisar el estado del fluido y detectar posibles pérdidas.','Ayuda a realizar el mantenimiento de acuerdo con las especificaciones del vehículo.'],
+extra:'Si notás golpes o tirones al pasar los cambios, demoras al seleccionar D o R, vibraciones, ruidos, patinamiento, testigos encendidos o pérdidas de fluido, es conveniente realizar una evaluación. No todas las transmisiones utilizan el mismo aceite ni admiten el mismo procedimiento: las cajas automáticas convencionales, CVT y de doble embrague tienen requisitos diferentes. El mantenimiento preventivo no garantiza solucionar una avería interna ya existente; primero hay que evaluar el estado de la transmisión y determinar el trabajo adecuado.'
 },
 {
 n:'08', icon:'🔩', title:'Mecánica general',
@@ -178,7 +178,7 @@ const filterBrands = [
   ['TECNECO','tecneco','jpeg']
 ]
 const wa = 'https://wa.me/5491159763359'
-const img = (name:string) => `/images/${name}`
+const img = (name:string) => `/images/${name}?v=20261101`
 
 function serviceCard(s:any) {
   return `<article class="service-card" data-service="${s.n}">
@@ -239,6 +239,37 @@ app.innerHTML = `
   <section class="cover-section">
     <img src="${img('portada-negocio.jpg')}" alt="GP Lubricentro - nuestro establecimiento"/>
     <div class="cover-caption"><span>GP LUBRICENTRO</span><strong>Tu vehículo, en buenas manos.</strong></div>
+  </section>
+
+  <section class="automatic-feature">
+    <div class="automatic-feature-inner">
+      <div class="automatic-copy">
+        <span class="automatic-kicker">ESPECIALIDAD DESTACADA · GP LUBRICENTRO</span>
+        <div class="automatic-symbol">⚙</div>
+        <h2>SERVICE DE <span>CAJAS AUTOMÁTICAS</span></h2>
+        <p class="automatic-lead">Cuidar la transmisión también es cuidar el rendimiento y la vida útil de tu vehículo.</p>
+        <p>El mantenimiento de una caja automática requiere atención a sus especificaciones técnicas. El tipo de fluido, el nivel, la temperatura de control y el procedimiento de servicio dependen del diseño de cada transmisión.</p>
+        <p>En GP Lubricentro destacamos este servicio porque una evaluación correcta permite revisar el estado general, detectar pérdidas y determinar qué mantenimiento corresponde realizar en cada vehículo.</p>
+        <div class="automatic-points">
+          <div><span>01</span><strong>Identificación</strong><small>Tipo y especificación de la transmisión.</small></div>
+          <div><span>02</span><strong>Evaluación</strong><small>Estado, nivel, temperatura y posibles pérdidas.</small></div>
+          <div><span>03</span><strong>Mantenimiento</strong><small>Fluido y procedimiento adecuados para cada caja.</small></div>
+        </div>
+        <div class="automatic-actions">
+          <button class="gold-button" data-open-service="07">CONOCÉ EL SERVICIO COMPLETO ↗</button>
+          <a class="automatic-wa" href="${wa}?text=${encodeURIComponent('Hola GP Lubricentro, quisiera consultar por el service de cajas automáticas.')}" target="_blank" rel="noopener">CONSULTAR POR WHATSAPP</a>
+        </div>
+        <small class="automatic-disclaimer">El procedimiento se determina según el vehículo y las especificaciones de su transmisión. La evaluación previa permite definir el trabajo adecuado.</small>
+      </div>
+      <div class="automatic-side">
+        <span class="automatic-side-label">TRANSMISIÓN AUTOMÁTICA</span>
+        <div class="gear-visual">⚙</div>
+        <strong>PRECISIÓN EN CADA DETALLE</strong>
+        <p>Fluido correcto. Procedimiento específico. Mantenimiento responsable.</p>
+        <div class="automatic-line"></div>
+        <span class="automatic-side-foot">GP LUBRICENTRO · ALMAFUERTE 799</span>
+      </div>
+    </div>
   </section>
 
   <section class="intro section-wrap">
